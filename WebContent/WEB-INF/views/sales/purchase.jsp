@@ -30,13 +30,17 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1">
    	<meta name="description" content="By parashar Devashish">
    	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" style="text/css">
+		<link rel="stylesheet" href="<%=path%>/resources/css/bootstrap.min.css" style="text/css">
 	<script type="text/javascript" src="<%=path%>/resources/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="<%=path%>/resources/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<%=path%>/resources/js/angular.min.js"></script>  
+  	<script type="text/javascript" src="<%=path%>/resources/js/angular.min.js"></script>
+  	<link rel="stylesheet" href="<%=path%>/resources/css/bootstrap-datetimepicker.css" type="text/css" />
+	<script src="<%=path%>/resources/js/moment-with-locales.js"></script>
+	<script src="<%=path%>/resources/js/bootstrap-datetimepicker.js"></script>
+	 <script src="https://code.angularjs.org/1.3.0-rc.2/angular-messages.js"></script>
 	
  	<script type="text/javascript">
- 		var app = angular.module('myApp');
+	var app = angular.module('myApp',["ngMessages"]);
  		var urlBase="<%=path%>";
  		app.factory('productFactory', ['$http', function ($http) {
  			 return {
@@ -61,18 +65,71 @@
  	 });
  	</script>
 </head>
-<body data-ng-controller="productController" ng-init="getLocation('c');">
+<body data-ng-controller="productController" >
 <jsp:include page="/WEB-INF/views/component/header.jsp"></jsp:include>
 <jsp:include page="/WEB-INF/views/component/headerMenu.jsp"></jsp:include>
    	<div class="col-sm-10">
-   		<form action="#">
-   		<div class="form-group">
-   			<label>Seller Name</label>
-   			<input type ="text" class="form-control" ng-model="bussinessName">
-   		
-   		</div>
-   		
-   		</form>
+   		<div class="col-lg-12 well" style="margin-top: -14px">
+				<div class="row">
+				<form name="signUpForm">
+					<div class="col-sm-12">
+					<div class="row">
+					<div class="col-sm-5 form-group">
+								<label for="sel1">Select Distributor </label>
+									  <select class="form-control" id="sel1" ng-init="disributor.id=1" ng-model="disributor.id=1" >
+									    <option  value="1" >Kushwaha Medical hall &nbsp; Lahar Patti Mairwa</option>
+									    <option  value="3">Shivam Pharma &nbsp; babuniya mod Siwan</option>
+									    <option value="3">Sainy Enterprses &nbsp; address Unknow</option>
+									  </select>
+					</div>
+					<div class="col-sm-3 form-group">
+							<label>Purchase Date</label>
+                			<div class='input-group date' id="datetimepicker1">
+                  			  <input type='text'  class="form-control" id ="datetimepicker1"  /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              			  </div>
+					</div>
+					<div class="col-sm-3 form-group">
+							<label>Invoice No </label>
+                			<div class='input-group date' id="datetimepicker1">
+                  				<input type="text"  class="form-control" ng-model="user.fName" ng-required>
+                  	  </div>
+					</div>
+					</div>
+					<div class="row">
+					<table class="table table-bordered" width=80%>
+						 	<tr style="background-color: grey; color: white;">
+						 	<th>Product Name</th> <th>Batch No</th> <th>MFG-Date</th><th>EXP-Date</th>  <th>Stock</th> <th>MRP</th> <th>Total</th>
+						 	</tr>
+						 <tr>
+						 	<td>
+						     <input  class="form-control" type="text" data-ng-model="productName" placeholder="Search part #"  data-typeahead="productName.searchKeyOfProduct  for productName in getProductDetailsList($viewValue)| filter:$viewValue"  data-ng-min-length="1" data-typeahead-min-length="2" data-typeahead-on-select='onSelectPartNumber($item)'  > 
+							<td><input  class="form-control" type ="text"></td>
+						 	<td><input  class="form-control" type ="text"></td>
+						 	<td><input  class="form-control" type ="text" ></td>
+						 	<td><input  class="form-control" type ="text" ></td>
+						 	<td><input  class="form-control"  type ="text" ></td>
+						 	<td><input  class="form-control" type ="text" ></td>
+						 	</tr>
+						 	<tr><td colspan="8"> <input value ="Add" type ="button" class="btn btn-primary" ng-click="saveData();"> </td></tr>
+						 	</table>  
+					</div>
+				
+						
+								
+						
+					
+							
+						
+					
+						
+			
+					<button type="button" class="btn btn-lg btn-danger">Cancel</button>	
+					<button type="button" class="btn btn-lg btn-info" ng-click="addUser(user);">Submit</button>
+										
+					</div>
+				</form> 
+				</div>
+	</div>
 		 	
 		 	
 		 	
@@ -80,5 +137,17 @@
    </div> <!-- end of col-sm-10 -->
 <jsp:include page="/WEB-INF/views/component/footer.jsp"></jsp:include>
 </body>
+<script type="text/javascript">
+$(function () {
+    $('#datetimepicker1').datetimepicker({
+    	format: 'MM/DD/YYYY'
+    });
+});
+	        
+		
+		
+        
+    
+</script>
 </html>
 

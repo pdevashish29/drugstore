@@ -22,7 +22,7 @@
     <!--  <span style="float:right; color: white;font-weight: 600; font-size: 14px; margin-right: 10px;"  >  <span class="glyphicon glyphicon-user"></span> Pandey Medical Hall</span>
     -->
     <% if(user!=null){ %>
-     <div class="dropdown pull-right" >
+     <div class="dropdown pull-right" style="margin-top: 23px" >
     <span class="dropdown-toggle"  data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> 
        <span style="color: white;font-weight: 600; font-size: 14px; margin-right: 10px;">&nbsp;<%=bussinessName %></span>
    	 <span class="caret"></span></span>

@@ -73,8 +73,6 @@ if(message==null)message="";
  	
  	</script>
 <style>
-@import "font-awesome.min.css";
-@import "font-awesome-ie7.min.css";
 /* Space out content a bit */
 body {
   padding-top: 20px;
@@ -178,7 +176,7 @@ body {
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-	<div class="col-lg-12 well">
+	<div class="col-lg-12 well" style="margin-top: -14px">
 	<div class="row">
 				<form name="signUpForm">
 					<div class="col-sm-12">
@@ -298,6 +296,7 @@ body {
 				</form> 
 				</div>
 	</div>
+							<a href="<%=path %>/handleLogin" class="text-center new-account">Login </a>
 	</div>
 <jsp:include page="/WEB-INF/views/component/footer.jsp"></jsp:include>
 </body>

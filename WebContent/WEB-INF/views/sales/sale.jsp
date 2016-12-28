@@ -34,15 +34,14 @@
 	<script type="text/javascript" src="<%=path%>/resources/js/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript" src="<%=path%>/resources/js/angular.min.js"></script>
 	<script type="text/javascript" src="<%=path%>/resources/js/bootstrap.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-sanitize.js"></script>
-    <!-- <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.0.js"></script> -->
-    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js" type="text/javascript"></script>
-  
+    	<link rel="stylesheet" href="<%=path%>/resources/css/bootstrap-datetimepicker.css" type="text/css" />
+	<script src="<%=path%>/resources/js/moment-with-locales.js"></script>
+	<script src="<%=path%>/resources/js/bootstrap-datetimepicker.js"></script>
+	 <script src="https://code.angularjs.org/1.3.0-rc.2/angular-messages.js"></script>
 	
  	<script type="text/javascript">
 
- 		var app = angular.module('myApp',['ngAnimate', 'ngSanitize', 'ui.bootstrap']);
+ 		var app = angular.module('myApp',['ngMessages']);
  		app.factory('productFactory', ['$http', function ($http) {
  			 var urlBase="<%=path%>";
  			 return {
@@ -92,26 +91,66 @@
 <jsp:include page="/WEB-INF/views/component/headerMenu.jsp"></jsp:include>		
 
    	<div class="col-sm-10" style="width: 80%">
-		 	<table class="table table-bordered" width=80%>
-		 	<tr background="grey"> <span style="text-align: left; color: white; height=50px;">Customer Details</span></tr>
-		 	<tr style="background-color: grey; color: white;">
-		 	<th>Product Name</th> <th>Batch No</th> <th>MFG-Date</th><th>EXP-Date</th>  <th>Stock</th> <th>MRP</th> <th>Total</th>
-		 	</tr>
-		 <tr>
-		 	<td>
-		     <input  class="form-control" type="text" data-ng-model="productName" placeholder="Search part #"  data-typeahead="productName.searchKeyOfProduct  for productName in getProductDetailsList($viewValue)| filter:$viewValue"  data-ng-min-length="1" data-typeahead-min-length="2" data-typeahead-on-select='onSelectPartNumber($item)'  > 
-			<td><input  class="form-control" type ="text" value="{{batchNo}}"></td>
-		 	<td><input  class="form-control" type ="text" value="{{mfgDate | date}}"></td>
-		 	<td><input  class="form-control" type ="text" value="{{expDate | date}}"></td>
-		 	<td><input  class="form-control" type ="text" value="{{qty }}"></td>
-		 	<td><input  class="form-control"  type ="text" value="{{rate | number:2 }}"></td>
-		 	<td><input  class="form-control" type ="text" value="{{total}}"></td>
-		 	</tr>
-		 	<tr><td colspan="8"> <input value ="Add" type ="button" class="btn btn-primary" ng-click="saveData();"> </td></tr>
-		 	</table>  
-   
+   	<div class="col-lg-12 well" style="margin-top: -14px">
+		 		<div class="row">
+				<form name="signUpForm">
+					<div class="col-sm-12">
+					<div class="row">
+					<div class="col-sm-5 form-group">
+								<label for="sel1">Customer Name </label>
+								<input type="text"  class="form-control" ng-model="user.fName" ng-required>
+					</div>
+					<div class="col-sm-3 form-group">
+							<label>Purchase Date</label>
+                			<div class='input-group date' id="datetimepicker1">
+                  			  <input type='text'  class="form-control" id ="datetimepicker1"  /><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+              			  </div>
+					</div>
+					<div class="col-sm-3 form-group">
+							<label>Invoice No </label>
+                			<div class='input-group date' id="datetimepicker1">
+                  				<input type="text"  class="form-control" ng-model="user.fName" ng-required>
+                  	  </div>
+					</div>
+					</div>
+					<div class="row">
+					<table class="table table-bordered" width=80%>
+						 	<tr style="background-color: grey; color: white;">
+						 	<th>Product Name</th> <th>Batch No</th> <th>MFG-Date</th><th>EXP-Date</th>  <th>Stock</th> <th>MRP</th> <th>Total</th>
+						 	</tr>
+						 <tr>
+						 	<td>
+						     <input  class="form-control" type="text" data-ng-model="productName" placeholder="Search part #"  data-typeahead="productName.searchKeyOfProduct  for productName in getProductDetailsList($viewValue)| filter:$viewValue"  data-ng-min-length="1" data-typeahead-min-length="2" data-typeahead-on-select='onSelectPartNumber($item)'  > 
+							<td><input  class="form-control" type ="text"></td>
+						 	<td><input  class="form-control" type ="text"></td>
+						 	<td><input  class="form-control" type ="text" ></td>
+						 	<td><input  class="form-control" type ="text" ></td>
+						 	<td><input  class="form-control"  type ="text" ></td>
+						 	<td><input  class="form-control" type ="text" ></td>
+						 	</tr>
+						 	<tr><td colspan="8"> <input value ="Add" type ="button" class="btn btn-primary" ng-click="saveData();"> </td></tr>
+						 	</table>  
+					</div>
+					<button type="button" class="btn btn-lg btn-danger">Cancel</button>	
+					<button type="button" class="btn btn-lg btn-info" ng-click="addUser(user);">Submit</button>
+					</div>
+				</form> 
+				</div>
+				</td>
    </div> <!-- end of col-sm-10 -->
 <jsp:include page="/WEB-INF/views/component/footer.jsp"></jsp:include>
 </body>
+<script type="text/javascript">
+$(function () {
+    $('#datetimepicker1').datetimepicker({
+    	format: 'MM/DD/YYYY'
+    });
+});
+	        
+		
+		
+        
+    
+</script>
 </html>
 
