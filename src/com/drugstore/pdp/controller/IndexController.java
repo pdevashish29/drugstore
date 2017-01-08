@@ -20,5 +20,11 @@ public class IndexController {
 	}
 	
 	
+
+	@RequestMapping("/addProduct")
+	public String add(){
+		return "admin/add";
+	}
+	
 	
 }

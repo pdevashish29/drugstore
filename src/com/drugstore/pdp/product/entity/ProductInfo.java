@@ -31,6 +31,11 @@ public class ProductInfo {
 	private String packaging;
 	@Column(name="QUANTITY")
 	private long quantity;
+	@Column
+	private  String batchNO;
+	private String deals;
+	
+	
 	@Column(name="LASTUPDATED_DATE")
 	Date lastUpdatedDate;
 	@Column(name="LASTUPDATED_BY")
@@ -185,6 +190,19 @@ public class ProductInfo {
 		this.deleteFlag = deleteFlag;
 	}
 	
+	public void setBatchNO(String batchNO) {
+		this.batchNO = batchNO;
+	}
+	public String getBatchNO() {
+		return batchNO;
+	}
+	
+	public void setDeals(String deals) {
+		this.deals = deals;
+	}
+	public String getDeals() {
+		return deals;
+	}
 	
 
 }

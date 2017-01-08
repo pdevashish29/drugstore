@@ -11,7 +11,8 @@
 <ul class="nav nav-pills nav-stacked">
     <li class="${tab=='sale' ?'active':''}"><a href="<%=path%>/sale">Sale</a></li>
     <li class="${tab=='purchase' ?'active':''}"><a href="<%=path %>/purchase">Purchase</a></li>
-    <li><a href="#">Report</a></li>
+   <li class="${tab=='add' ?'active':''}"><a href="<%=path %>/addProduct">Add Product</a></li>
+   <li><a href="#">Report</a></li>
     <li><a href="#">Social</a></li>
   </ul>
 </div> 
